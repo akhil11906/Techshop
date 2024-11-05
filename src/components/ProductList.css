@@ -1,0 +1,48 @@
+/* Product List Styles */
+.product-list {
+    display: flex; /* Flex layout for product cards */
+    flex-wrap: wrap; /* Allow wrapping of cards */
+    justify-content: center; /* Centers the cards */
+    padding: 20px; /* Padding around the product list */
+}
+
+/* Filter Buttons Container */
+.filter-buttons {
+    display: flex; /* Flexbox for button layout */
+    justify-content: center; /* Center buttons */
+    gap: 15px; /* Space between buttons */
+    margin: 20px 0; /* Space around the button group */
+}
+
+/* Filter Button Styling */
+.filter-buttons button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px; /* Padding inside buttons */
+    border: none; /* No border */
+    border-radius: 20px; /* Rounded corners */
+    font-size: 14px; /* Font size for buttons */
+    font-weight: 600; /* Bold font weight */
+    cursor: pointer; /* Pointer cursor on hover */
+   
+}
+
+/* Active Button Style */
+.filter-buttons button.active {
+   
+    transform: scale(1.05); /* Slightly larger to highlight */
+    background-color: red;
+}
+
+/* Hover Effect */
+.filter-buttons button:hover {
+    color: #E6E1DF; /* Light text color on hover */
+    transform: translateY(-2px); /* Subtle movement on hover */
+    background-color: red;
+}
+
+/* Focus for Accessibility */
+.filter-buttons button:focus {
+    outline: none; /* Remove default outline */
+    background-color: red;
+}

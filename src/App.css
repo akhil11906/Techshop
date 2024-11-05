@@ -1,38 +1,120 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* .banner-slider {
+  position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.banner-slide {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 400px;
+  padding: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.banner-slide.dark-background {
+  background-color: #000;
+  color: #fff;
+}
+
+.banner-content {
+  width: 50%;
+  padding: 20px;
+}
+
+.banner-caption {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.banner-description {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.banner-image {
+  width: 50%;
+  object-fit: cover;
+  max-height: 100%;
+}
+
+.prev-btn, .next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+/* Product Banner */
+/* .product-banner {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 40px;
+}
+
+.product-info {
+  width: 50%;
+  padding: 20px;
+}
+
+.product-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product-subtitle {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.product-price {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.discounted-price {
+  color: #e63946;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #777;
+}
+
+.shop-now-btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.product-image {
+  width: 50%;
+}
+
+.product-banner-image {
+  width: 50%;
+  height: auto;
+} */ 
+*{
+  margin: 0;
 }

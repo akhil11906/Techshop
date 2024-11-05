@@ -1,0 +1,112 @@
+/* General body styles to set a black background for the entire application */
+body {
+    background-color: black; /* Black background for the entire body */
+    color: #E6E1DF; /* Default text color set to #E6E1DF for contrast */
+}
+
+/* Product Card Styles */
+.product-card {
+    border: 1px solid #ddd; /* Light border for cards */
+    border-radius: 8px; /* Rounded corners */
+    padding: 16px; /* Padding inside cards */
+    margin: 16px; /* Space between cards */
+    text-align: center; /* Centered text */
+    transition: box-shadow 0.3s; /* Smooth transition for hover effect */
+    background-color: black; /* Darker background for the card */
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.5); /* Red shadow on hover */
+}
+
+.product-image {
+    max-width: 100%; /* Responsive image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 4px; /* Rounded corners for images */
+}
+
+.product-title {
+    font-size: 1.2em; /* Font size for product title */
+    margin: 10px 0; /* Margin above and below title */
+    color: #E6E1DF; /* Title color red */
+}
+
+.product-info {
+    color: #ccc; /* Light grey for info text */
+}
+
+.price-section {
+    display: flex; /* Flexbox for price layout */
+    justify-content: center; /* Center prices */
+    align-items: baseline; /* Align prices vertically */
+    margin: 8px 0; /* Margin above and below price section */
+}
+
+.final-price {
+    font-weight: bold; /* Bold final price */
+    color: #E6E1DF; /* Final price color red */
+}
+
+.original-price {
+    text-decoration: line-through; /* Strike through original price */
+    color: #888; /* Original price color grey */
+    margin-left: 8px; /* Space to the left */
+}
+
+.ratings {
+    margin-top: 8px; /* Space above ratings */
+    color: #E6E1DF; /* Use the new text color for ratings */
+}
+
+.view-details-button {
+    background-color: red; /* Red button for view details */
+    color: white; /* White text on buttons */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners for buttons */
+    padding: 10px 16px; /* Padding inside buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+.view-details-button:hover {
+    background-color: darkred; /* Darker shade of red for hover effect */
+}
+
+/* Container Styles */
+.products-container {
+    max-width: 1200px; /* Max width for container */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Padding around container */
+}
+
+.product-cards-wrapper {
+    display: flex; /* Flexbox for card layout */
+    flex-wrap: wrap; /* Allow wrapping of cards */
+    justify-content: center; /* Center cards */
+}
+
+/* Use grid layout for product display */
+.product-grid {
+    display: grid; /* Grid display */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 16px; /* Space between cards */
+}
+
+.browse-all {
+    text-align: center; /* Center the browse all section */
+    margin-top: 20px; /* Space above this section */
+}
+
+.browse-button {
+    background-color: red; /* Red button for browsing */
+    color: white; /* White text on button */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners for buttons */
+    padding: 10px 16px; /* Padding inside buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+.browse-button:hover {
+    background-color: darkred; /* Darker shade of red for hover */
+}

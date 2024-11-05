@@ -1,0 +1,173 @@
+/* Cart.css */
+
+body {
+    background-color: #000; /* Black background for the entire page */
+    color: #fff; /* White text for good contrast */
+    font-family: 'Arial', sans-serif; /* Clean and modern font */
+    line-height: 1.6; /* Better readability */
+}
+
+.cart-container {
+    display: flex; /* Flexbox to arrange items side-by-side */
+    gap: 20px; /* Space between the cart items and order summary */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Padding for spacing */
+    max-width: 1000px; /* Set a maximum width for the whole container */
+    background-color: #1A1A1A; /* Dark grey background for the container */
+    border-radius: 8px; /* Rounded corners for the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+.cart-items-container {
+    flex: 2; /* Make the cart items container take more space */
+}
+
+.order-summary-container {
+    flex: 1; /* Order summary container takes up less space */
+}
+
+.cart-title {
+    text-align: center; /* Center the title */
+    font-size: 1.8rem; /* Slightly larger font size for the title */
+    margin-bottom: 20px; /* Margin below the title */
+    text-transform: uppercase; /* Uppercase letters for the title */
+}
+
+.empty-cart-message {
+    text-align: center; /* Center the empty cart message */
+    font-size: 1.2rem; /* Font size for the message */
+    margin-top: 50px; /* Margin above the message */
+}
+
+.cart-items {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+}
+
+.cart-item {
+    display: flex; /* Flexbox for item layout */
+    align-items: center; /* Center items vertically */
+    border: 1px solid #444; /* Dark border for each item */
+    padding: 15px; /* Padding inside the item */
+    margin-bottom: 15px; /* Space between items */
+    border-radius: 5px; /* Slightly rounded corners */
+    background-color: #2A2A2A; /* Slightly lighter background for items */
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.cart-item:hover {
+    background-color: #333; /* Darker background on hover */
+}
+
+.item-image {
+    width: 80px; /* Set a fixed width for images */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 15px; /* Space between image and text */
+    border-radius: 4px; /* Slightly rounded corners on images */
+}
+
+.item-details {
+    flex-grow: 1; /* Take remaining space */
+}
+
+.item-title {
+    font-size: 1.4rem; /* Title font size */
+    margin: 0; /* Remove default margin */
+    font-weight: 600; /* Semi-bold font weight */
+}
+
+.item-price,
+.item-quantity {
+    margin: 5px 0; /* Margin between price and quantity */
+    font-size: 1rem; /* Font size for price and quantity */
+}
+
+.remove-button {
+    padding: 8px 12px; /* Padding for buttons */
+    background-color: #D32F2F; /* Red background for remove button */
+    color: white; /* White text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background change */
+}
+
+.remove-button:hover {
+    background-color: #B71C1C; /* Darker red on hover */
+}
+
+.quantity-controls {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+    margin: 10px 0; /* Margin above and below */
+}
+
+.quantity-button {
+    padding: 5px 10px; /* Padding for buttons */
+    background-color: #D32F2F; /* Red background for buttons */
+    color: white; /* White text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background change */
+}
+
+.quantity-button:hover {
+    background-color: #B71C1C; /* Darker red on hover */
+}
+
+.item-quantity {
+    margin: 0 10px; /* Margin for spacing between buttons */
+    font-size: 1.2rem; /* Font size for quantity display */
+    color: #E0E0E0; /* Light grey for quantity text */
+}
+
+.order-summary {
+    background-color: #2A2A2A; /* Dark background for the order summary */
+    padding: 20px; /* Padding around the order summary */
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #444; /* Dark border for summary box */
+}
+
+.order-summary h2 {
+    font-size: 1.5rem; /* Font size for the summary title */
+    margin-bottom: 15px; /* Space below the title */
+}
+
+.order-summary p {
+    margin: 10px 0; /* Margin above and below summary items */
+    font-size: 1.1rem; /* Font size for summary details */
+}
+
+.order-summary hr {
+    margin: 15px 0; /* Space around the underline */
+    border: 0; /* Remove default border */
+    height: 1px; /* Set height for underline */
+    background-color: #444; /* Color of the underline */
+}
+
+.total-price {
+    font-weight: bold; /* Bold text for total price */
+    font-size: 1.3rem; /* Larger font size for total price */
+}
+
+.continue-button {
+    background-color: #D32F2F; /* Red background for checkout button */
+    width: 100%; /* Full width for the button */
+    padding: 10px; /* Padding for button */
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.continue-button:hover {
+    background-color: #B71C1C; /* Darker red on hover */
+}
+.strike-price {
+    text-decoration: line-through; /* Adds a line through the text */
+    color: #888; /* Optional: make the original price a lighter color for contrast */
+    margin-left: 10px; /* Space between the discounted price and the original price */
+    font-size: 0.9rem; /* Slightly smaller font for the original price */
+}
+
