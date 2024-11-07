@@ -129,6 +129,15 @@ body {
 .browse-all-card .view-details-button:hover {
     background-color: red; /* Change background on hover */
 }
+/* Remove underline from Link components */
+.product-link {
+    text-decoration: none; /* Remove underline */
+}
+
+.product-link:hover {
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
 
 /* Responsive Styling for smaller screens */
 @media (max-width: 768px) {

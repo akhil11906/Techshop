@@ -7,14 +7,14 @@ import { useCart } from '../components/CartContext'; // Import useCart
 
 const ProductList = ({ selectedCategory }) => {
     const { addToCart } = useCart(); // Get addToCart from context
-    const [category, setSelectedCategory] = useState('All'); // Initialize selected category
+    const [category, setSelectedCategory] = useState(selectedCategory || 'All'); // Initialize selected category, default to 'All'
 
-    // Filtered products based on the selected category
+    // Filter products based on selected category
     const filteredProducts = category === 'All'
         ? productsData
         : productsData.filter(product => product.category === category);
 
-    // Determine which products to display (first 11 products)
+    // Only display the first 11 products
     const productsToDisplay = filteredProducts.slice(0, 11);
 
     return (

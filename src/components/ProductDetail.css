@@ -1,129 +1,223 @@
-.product-detail {
-    display: flex;
+.akhil-detail {
     justify-content: center;
-    padding: 20px;
+    padding: 40px; /* Increase padding for more space around content */
     background-color: black; /* Black background */
     color: white; /* White text */
 }
 
-.product-detail-content {
+.akhil-detail-content {
     display: flex;
-    max-width: 1200px;
+    max-width: 1400px; /* Increase max-width for a wider content area */
     background-color: black; /* Black background for the product content */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2); /* Add a larger shadow for a more prominent effect */
+    padding: 30px; /* Add more padding inside the content area */
 }
 
-.left-side {
-    width: 20%;
-    padding-right: 20px;
+.akhil-left-side {
+    width: 25%; /* Increase width for better spacing */
+    padding-right: 30px; /* Add more space between sections */
 }
 
-.thumbnail-images {
+.akhil-thumbnail-images {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 15px; /* Add space between thumbnails */
 }
 
-.thumbnail-image {
-    width: 80px;
-    height: 80px;
+.akhil-thumbnail-image {
+    width: 100px; /* Increase size of thumbnails */
+    height: 100px;
     object-fit: cover;
-    margin-bottom: 10px;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
 
-.thumbnail-image:hover {
-    transform: scale(1.1);
+.akhil-thumbnail-image:hover {
+    transform: scale(1.15); /* Slightly bigger scale on hover */
 }
 
-.center-side {
-    width: 40%;
+.akhil-center-side {
+    width: 45%; /* Increase width of the center section */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.main-image {
-    max-width: 100%;
+.akhil-main-image {
+    max-width: 80%; /* Decrease image size slightly for better layout */
     height: auto;
     border: 1px solid #ddd;
 }
 
-.right-side {
-    width: 40%;
-    padding-left: 20px;
+.akhil-right-side {
+    width: 30%; /* Increase width of the right section */
+    padding-left: 30px; /* Add more space between sections */
 }
 
 h2 {
     margin-top: 0;
-    font-size: 24px;
+    font-size: 30px; /* Increase font size */
     color: white; /* White text for product name */
 }
 
-.rating {
-    font-size: 16px;
+.akhil-rating {
+    font-size: 18px; /* Increase font size for rating */
     color: #aaa; /* Lighter color for ratings */
 }
 
-.price {
-    font-size: 22px;
+.akhil-price {
+    font-size: 28px; /* Increase price font size */
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 20px; /* Increase spacing between price and other sections */
     color: white; /* White color for price */
 }
 
-.stock {
-    font-size: 16px;
-    margin-top: 10px;
+.akhil-stock {
+    font-size: 18px; /* Increase font size */
+    margin-top: 15px; /* More space between stock and other sections */
     color: white; /* White color for stock */
 }
 
-.offers h4, .emi h4 {
-    margin-top: 20px;
-    font-size: 18px;
+.akhil-offers h4, .akhil-emi h4 {
+    margin-top: 30px; /* Increase space between offers and other sections */
+    font-size: 22px; /* Larger font size for section headings */
     color: white; /* White color for section headings */
 }
 
-.offers ul {
-    padding-left: 20px;
+.akhil-offers ul {
+    padding-left: 25px; /* Increase padding for offer list */
 }
 
-.offers li {
-    font-size: 14px;
-    margin-bottom: 5px;
+.akhil-offers li {
+    font-size: 16px; /* Larger font size for offers */
+    margin-bottom: 10px; /* More space between offer items */
     color: white; /* White text for offers */
 }
 
-.emi p {
-    font-size: 16px;
+.akhil-emi p {
+    font-size: 18px; /* Larger font size for EMI info */
     color: white; /* White color for EMI text */
 }
 
-.add-to-cart {
+.akhil-add-to-cart {
     background-color: #ff5722; /* Red button */
     color: white;
-    padding: 10px 20px;
+    padding: 15px 30px; /* Increase padding for the button */
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 8px; /* Slightly rounded corners */
+    font-size: 20px; /* Larger text for the button */
     cursor: pointer;
+    margin-top: 30px; /* More space between button and other sections */
+}
+
+.akhil-add-to-cart:hover {
+    background-color: #e64a19; /* Darker red on hover */
+}
+/* ProductDetail.css */
+
+/* Style for the tab buttons */
+.akhil-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
     margin-top: 20px;
 }
 
-.add-to-cart:hover {
-    background-color: #e64a19; /* Darker red on hover */
+.akhil-tab-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid red;
+    background-color:red;
+    border-radius: 5px;
+    /* transition: background-color 0.3s ease; */
+    color: white;
 }
 
-.back-link {
-    color: #007bff;
-    text-decoration: none;
+.akhil-tab-button:focus {
+    outline: none;
+    background-color: #d0d0d0;
+}
+/* ProductDetail.css */
+
+/* Review Section */
+.akhil-reviews {
+    margin-top: 20px;
+}
+
+.review {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.review h4 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.review-date {
+    font-size: 14px;
+    color: gray;
+}
+
+.review-rating {
+    color: #ffcc00; /* Golden color for stars */
+}
+
+.review-text {
+    font-size: 16px;
+    line-height: 1.6;
+}
+/* Related Products Section */
+.akhil-related-products {
+    margin-top: 40px;
+}
+
+.akhil-related-products h3 {
+    font-size: 24px;
     margin-bottom: 20px;
-    display: inline-block;
+}
+
+.akhil-related-products-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.related-product {
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+}
+
+.related-product img {
+    max-width: 100%;
+    height: auto;
+}
+
+.related-product h4 {
+    font-size: 16px;
     margin-top: 10px;
 }
 
-.back-link:hover {
-    text-decoration: underline;
+.original-price {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.add-to-cart-btn {
+    background-color: #ff5c5c;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #ff4040;
 }
