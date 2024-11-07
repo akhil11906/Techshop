@@ -1,34 +1,46 @@
+// src/Login.js
 import React, { useState } from 'react';
+import axios from 'axios';
+import './Login.css'; // Import the CSS file
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle login logic, such as calling an API
-        console.log('Logging in with:', email, password);
+        axios.post('http://localhost:5000/login', { email, password })
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error('Error logging in:', error);
+            });
     };
 
     return (
-        <form className="auth-form" onSubmit={handleLogin}>
+        <div className="login-container"> {/* Updated class name to match CSS */}
             <h2>Login</h2>
-            <input 
-                type="email" 
-                placeholder="Email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
-                required 
-            />
-            <input 
-                type="password" 
-                placeholder="Password" 
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)} 
-                required 
-            />
-            <button type="submit" className="auth-button">Login</button>
-        </form>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="email">Email:</label> {/* Added htmlFor for accessibility */}
+                <input
+                    type="email"
+                    id="email" // Added ID for the label to reference
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+                <label htmlFor="password">Password:</label> {/* Added htmlFor for accessibility */}
+                <input
+                    type="password"
+                    id="password" // Added ID for the label to reference
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                <button type="submit">Login</button>
+            </form>
+        </div>
     );
 };
 

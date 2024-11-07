@@ -1,48 +1,122 @@
-/* Product List Styles */
+/* General styling for the product list */
 .product-list {
-    display: flex; /* Flex layout for product cards */
-    flex-wrap: wrap; /* Allow wrapping of cards */
-    justify-content: center; /* Centers the cards */
-    padding: 20px; /* Padding around the product list */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
 }
 
-/* Filter Buttons Container */
+/* Filter buttons styling */
 .filter-buttons {
-    display: flex; /* Flexbox for button layout */
-    justify-content: center; /* Center buttons */
-    gap: 15px; /* Space between buttons */
-    margin: 20px 0; /* Space around the button group */
+    margin-bottom: 20px;
 }
 
-/* Filter Button Styling */
 .filter-buttons button {
-    background-color: black;
+    margin: 0 10px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #ff0000; /* Red background */
     color: white;
-    padding: 10px 20px; /* Padding inside buttons */
-    border: none; /* No border */
-    border-radius: 20px; /* Rounded corners */
-    font-size: 14px; /* Font size for buttons */
-    font-weight: 600; /* Bold font weight */
-    cursor: pointer; /* Pointer cursor on hover */
-   
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-/* Active Button Style */
-.filter-buttons button.active {
-   
-    transform: scale(1.05); /* Slightly larger to highlight */
-    background-color: red;
-}
-
-/* Hover Effect */
 .filter-buttons button:hover {
-    color: #E6E1DF; /* Light text color on hover */
-    transform: translateY(-2px); /* Subtle movement on hover */
-    background-color: red;
+    background-color: #cc0000; /* Darker red on hover */
 }
 
-/* Focus for Accessibility */
-.filter-buttons button:focus {
-    outline: none; /* Remove default outline */
-    background-color: red;
+/* Product grid to display product cards in a 4-column layout */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px; /* Space between cards */
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Product card styling */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures uniform spacing for content */
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #1a1a1a; /* Dark gray for contrast */
+    color: #fff;
+    height: 100%; /* Makes all cards equal height */
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2); /* Subtle red shadow */
+}
+
+/* Styling for product card content */
+.product-card .product-info {
+    flex-grow: 1; /* Takes up remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Ensures the button aligns consistently at the bottom of the card */
+.product-card .add-to-cart {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ff0000; /* Red button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center;
+}
+
+.add-to-cart:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+/* Specific styling for the "Browse all products" card */
+.browse-all-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ff0000; /* Red text for emphasis */
+    background-color: #333; /* Slightly lighter gray */
+}
+
+.browse-all-card h4 {
+    margin-bottom: 10px;
+}
+
+.view-details-button {
+    padding: 8px 16px;
+    background-color: #ff0000; /* Red button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.view-details-button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* 1 column on small screens */
+    }
 }

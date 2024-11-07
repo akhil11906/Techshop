@@ -1,0 +1,129 @@
+.product-detail {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: black; /* Black background */
+    color: white; /* White text */
+}
+
+.product-detail-content {
+    display: flex;
+    max-width: 1200px;
+    background-color: black; /* Black background for the product content */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.left-side {
+    width: 20%;
+    padding-right: 20px;
+}
+
+.thumbnail-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.thumbnail-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.thumbnail-image:hover {
+    transform: scale(1.1);
+}
+
+.center-side {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+}
+
+.right-side {
+    width: 40%;
+    padding-left: 20px;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: white; /* White text for product name */
+}
+
+.rating {
+    font-size: 16px;
+    color: #aaa; /* Lighter color for ratings */
+}
+
+.price {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: white; /* White color for price */
+}
+
+.stock {
+    font-size: 16px;
+    margin-top: 10px;
+    color: white; /* White color for stock */
+}
+
+.offers h4, .emi h4 {
+    margin-top: 20px;
+    font-size: 18px;
+    color: white; /* White color for section headings */
+}
+
+.offers ul {
+    padding-left: 20px;
+}
+
+.offers li {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: white; /* White text for offers */
+}
+
+.emi p {
+    font-size: 16px;
+    color: white; /* White color for EMI text */
+}
+
+.add-to-cart {
+    background-color: #ff5722; /* Red button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.add-to-cart:hover {
+    background-color: #e64a19; /* Darker red on hover */
+}
+
+.back-link {
+    color: #007bff;
+    text-decoration: none;
+    margin-bottom: 20px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

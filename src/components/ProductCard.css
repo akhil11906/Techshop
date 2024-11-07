@@ -2,6 +2,9 @@
 body {
     background-color: black; /* Black background for the entire body */
     color: #E6E1DF; /* Default text color set to #E6E1DF for contrast */
+    font-family: Arial, sans-serif; /* Generic font for the app */
+    margin: 0;
+    padding: 0;
 }
 
 /* Product Card Styles */
@@ -13,6 +16,7 @@ body {
     text-align: center; /* Centered text */
     transition: box-shadow 0.3s; /* Smooth transition for hover effect */
     background-color: black; /* Darker background for the card */
+    cursor: default; /* Prevents the entire card from being clickable */
 }
 
 .product-card:hover {
@@ -79,6 +83,7 @@ body {
     padding: 20px; /* Padding around container */
 }
 
+/* Product cards wrapper styles */
 .product-cards-wrapper {
     display: flex; /* Flexbox for card layout */
     flex-wrap: wrap; /* Allow wrapping of cards */
@@ -88,25 +93,54 @@ body {
 /* Use grid layout for product display */
 .product-grid {
     display: grid; /* Grid display */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
     gap: 16px; /* Space between cards */
 }
 
-.browse-all {
-    text-align: center; /* Center the browse all section */
-    margin-top: 20px; /* Space above this section */
+/* Browse All Card Styling */
+.browse-all-card {
+    margin: 10px; /* Space around the card */
+    cursor: pointer; /* Show it's clickable */
+    transition: box-shadow 0.3s ease; /* Add hover effect */
 }
 
-.browse-button {
-    background-color: red; /* Red button for browsing */
-    color: white; /* White text on button */
+.browse-all-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.browse-all-card h4 {
+    margin: 10px 0; /* Top and bottom margin */
+    color: #E6E1DF; /* Text color */
+}
+
+/* Button styling to match the product card buttons */
+.browse-all-card .view-details-button {
+    padding: 10px 20px; /* Button padding */
+    background-color: black; /* Button background */
+    color: white; /* Button text color */
     border: none; /* No border */
-    border-radius: 4px; /* Rounded corners for buttons */
-    padding: 10px 16px; /* Padding inside buttons */
+    border-radius: 20px; /* Rounded corners */
     cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Transition for hover effect */
+    font-size: 14px; /* Font size for buttons */
+    font-weight: 600; /* Bold font weight */
 }
 
-.browse-button:hover {
-    background-color: darkred; /* Darker shade of red for hover */
+/* Button hover effect */
+.browse-all-card .view-details-button:hover {
+    background-color: red; /* Change background on hover */
+}
+
+/* Responsive Styling for smaller screens */
+@media (max-width: 768px) {
+    .products-container {
+        padding: 10px;
+    }
+
+    .product-card {
+        margin: 8px; /* Reduce margin for smaller screens */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust grid for smaller screens */
+    }
 }
