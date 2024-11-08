@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa'; // Import star icons
+import { FaUserAlt } from 'react-icons/fa';
 import productsData from '../Data/ProductsData';
 import reviewsData from '../Data/ReviewData';
 import { useCart } from '../components/CartContext';
@@ -26,53 +28,93 @@ const ProductDetail = () => {
     // Calculate discount percentage
     const discountPercentage = Math.round(((product.originalPrice - product.finalPrice) / product.originalPrice) * 100);
 
+    // Function to render stars based on the rating, capped at 5 stars
+    const renderStars = (rating) => {
+        const maxStars = 5;
+        const normalizedRating = Math.min(rating, maxStars); // Cap rating to 5
+        const fullStars = Math.floor(normalizedRating);
+        const hasHalfStar = normalizedRating % 1 !== 0;
+        const stars = [];
+
+        // Add full stars
+        for (let i = 0; i < fullStars; i++) {
+            stars.push(<FaStar key={i} className="star-icon" />);
+        }
+
+        // Add half star if necessary
+        if (hasHalfStar) {
+            stars.push(<FaStarHalfAlt key="half" className="star-icon" />);
+        }
+
+        // Fill remaining stars with empty stars
+        while (stars.length < maxStars) {
+            stars.push(<FaRegStar key={stars.length} className="star-icon" />);
+        }
+
+        return stars;
+    };
+
     // Specifications Content
     const specifications = (
         <div className="akhil-specifications">
             <ul>
                 <li><strong>Brand:</strong> {product.brand}</li>
-                <li><strong>Model:</strong> {product.model}</li>
-                <li><strong>Generic Name:</strong> {product.genericName}</li>
-                <li><strong>Headphone Type:</strong> {product.headphoneType}</li>
+                <li><strong>Model:</strong> {product.title}</li>
+                <li><strong>Generic Name:</strong> {product.category}</li>
+                <li><strong>Headphone Type:</strong> {product.connectivity}</li>
                 <li><strong>Connectivity:</strong> {product.connectivity}</li>
-                <li><strong>Microphone:</strong> {product.microphone}</li>
+                <li><strong>Microphone:</strong> {product.type}</li>
             </ul>
         </div>
     );
 
-    // Overview Content (Dynamic with Product Name)
+    // Overview Content
     const overview = (
         <div className="akhil-overview">
-            <p>The {product.title} in-ear truly wireless earbuds provide fabulous sound quality.</p>
+            <p>The <span style={{ color: 'red' }}>{product.title}</span> in-ear truly wireless earbuds provide fabulous sound quality.</p>
             <ul>
                 <li>Sound tuned to perfection</li>
                 <li>Comfortable to wear</li>
                 <li>Long hours playback time</li>
             </ul>
-            <p>Buy the {product.title}, which offers you a fabulous music experience by providing you with awesome sound quality that you can never move on from. Enjoy perfect flexibility.</p>
+            <p>Buy the <span style={{ color: 'red' }}>{product.title}</span> , which offers you a fabulous music experience by providing you with awesome sound quality that you can never move on from. Enjoy perfect flexibility.</p>
         </div>
     );
 
-    // Reviews Content (Map over reviewsData)
+    // Reviews Content
     const reviews = (
         <div className="akhil-reviews">
-            {reviewsData.map((review) => (
-                <div key={review.id} className="review">
+    {reviewsData.map((review) => (
+        <div key={review.id} className="review">
+            <div className="review-header">
+                {/* Profile icon on the left */}
+                <FaUserAlt className="review-user-icon" />
+                
+                {/* Name, Date, and Rating on the right */}
+                <div className="review-info">
                     <h4>{review.name}</h4>
-                    <p className="review-date">{review.date}</p>
-                    <div className="review-rating">
-                        {'⭐'.repeat(review.rateCount)} {/* Display stars based on rating */}
+                    <div className="review-meta">
+                        <p className="review-date">
+                            {review.date} <span>|</span>
+                        </p>
+                        <div className="review-rating">
+                            {renderStars(product.ratings)} {/* Display stars based on rating */}
+                        </div>
                     </div>
-                    <p className="review-text">{review.review}</p>
                 </div>
-            ))}
+            </div>
+            {/* Review text */}
+            <p className="review-text">{review.review}</p>
         </div>
+    ))}
+</div>
+
     );
 
-    // Related Products Content (Limit to 4)
+    // Related Products Content
     const relatedProducts = productsData
-        .filter((item) => item.category === product.category && item.id !== product.id) // Example: filter by category
-        .slice(0, 4); // Limit to first 4 products
+        .filter((item) => item.category === product.category && item.id !== product.id)
+        .slice(0, 4);
 
     const relatedProductsSection = (
         <div className="akhil-related-products">
@@ -84,9 +126,22 @@ const ProductDetail = () => {
                             <Link to={`/product/${relatedProduct.id}`}>
                                 <img src={relatedProduct.images[0]} alt={relatedProduct.title} className="related-product-image" />
                             </Link>
+                            <div className="related-product-rating">
+                            {renderStars(product.ratings)} {/* Display stars */}
+                            </div>
+
+                            {/* Product Title */}
                             <h4>{relatedProduct.title}</h4>
-                            <p>₹{relatedProduct.finalPrice} <span className="original-price">₹{relatedProduct.originalPrice}</span></p>
-                            <p>{Math.round(((relatedProduct.originalPrice - relatedProduct.finalPrice) / relatedProduct.originalPrice) * 100)}% Off</p>
+
+                            {/* Product Subtitle (Tagline or Short Description) */}
+                            <p className="related-product-subtitle">{relatedProduct.info}</p>
+
+                            <hr />
+
+                            {/* Price Section */}
+                            <p className="related-product-price">
+                                ₹{relatedProduct.finalPrice} <span className="original-price">₹{relatedProduct.originalPrice}</span>
+                            </p>
                             <button className="add-to-cart-btn" onClick={() => addToCart(relatedProduct)}>Add to Cart</button>
                         </div>
                     ))
@@ -106,7 +161,6 @@ const ProductDetail = () => {
         <div className="akhil-detail">
             <div className="akhil-detail-content">
                 <div className="akhil-left-side">
-                    {/* Thumbnail images */}
                     <div className="akhil-thumbnail-images">
                         {product.images && product.images.length > 0 ? (
                             product.images.map((image, index) => (
@@ -125,7 +179,6 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="akhil-center-side">
-                    {/* Main large image */}
                     {mainImage ? (
                         <img src={mainImage} alt="Product" className="akhil-main-image" />
                     ) : (
@@ -134,70 +187,44 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="akhil-right-side">
-                    {/* Title */}
                     <h1>{product.title}</h1>
-
-                    {/* Tagline */}
-                    <p className="akhil-subheading">{product.tagline}</p>
-
-                    {/* Rating and Number of Ratings */}
-                    <p className="akhil-rating">⭐ {product.ratings} | {product.reviews} Ratings</p>
-
-                    {/* Price and Original Price */}
+                    <p className="akhil-subheading">{product.info}</p>
+                    <div className="akhil-rating">
+                        {renderStars(product.rateCount)} {/* Display stars based on exact product rating */}
+                        <span className="reviews-count"> | {product.ratings} Reviews</span> {/* Display review count */}
+                    </div>
+                    <hr/>
                     <div className="akhil-price-section">
                         <p className="akhil-price">
                             ₹{product.finalPrice} <span className="akhil-original-price">₹{product.originalPrice}</span>
                         </p>
-
-                        {/* You Save */}
                         <p className="akhil-discount">You save: ₹{product.originalPrice - product.finalPrice} ({discountPercentage}%)</p>
-
-                        {/* Inclusive of all taxes */}
                         <p className="akhil-tax-info">(Inclusive of all taxes)</p>
                     </div>
+                    <hr/>
+                    <h4>Offers and Discounts</h4>
 
-                    {/* Offers and Discounts */}
                     <div className="akhil-offers">
-                        <h4>Offers and Discounts</h4>
                         <p>No Cost EMI on Credit Card</p>
                         <p>Pay Later & Avail Cashback</p>
                     </div>
-
-                    {/* Add to Cart Button */}
+                    <hr/>
                     <button className="akhil-add-to-cart" onClick={() => addToCart(product)}>Add to cart</button>
                 </div>
             </div>
 
-            {/* Section for Specifications, Overview, and Reviews buttons */}
             <div className="akhil-tabs">
-                <button
-                    className={`akhil-tab-button ${activeTab === 'Specifications' ? 'active' : ''}`}
-                    onClick={() => handleTabClick('Specifications')}
-                >
-                    Specifications
-                </button>
-                <button
-                    className={`akhil-tab-button ${activeTab === 'Overview' ? 'active' : ''}`}
-                    onClick={() => handleTabClick('Overview')}
-                >
-                    Overview
-                </button>
-                <button
-                    className={`akhil-tab-button ${activeTab === 'Reviews' ? 'active' : ''}`}
-                    onClick={() => handleTabClick('Reviews')}
-                >
-                    Reviews
-                </button>
+                <button className={`akhil-tab-button ${activeTab === 'Specifications' ? 'active' : ''}`} onClick={() => handleTabClick('Specifications')}>Specifications</button>
+                <button className={`akhil-tab-button ${activeTab === 'Overview' ? 'active' : ''}`} onClick={() => handleTabClick('Overview')}>Overview</button>
+                <button className={`akhil-tab-button ${activeTab === 'Reviews' ? 'active' : ''}`} onClick={() => handleTabClick('Reviews')}>Reviews</button>
             </div>
 
-            {/* Conditionally render the content based on the active tab */}
             <div className="akhil-tab-content">
                 {activeTab === 'Specifications' && specifications}
                 {activeTab === 'Overview' && overview}
                 {activeTab === 'Reviews' && reviews}
             </div>
 
-            {/* Related Products Section */}
             {relatedProductsSection}
         </div>
     );

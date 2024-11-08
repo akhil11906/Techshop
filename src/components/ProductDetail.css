@@ -47,7 +47,6 @@
 .akhil-main-image {
     max-width: 80%; /* Decrease image size slightly for better layout */
     height: auto;
-    border: 1px solid #ddd;
 }
 
 .akhil-right-side {
@@ -63,7 +62,10 @@ h2 {
 
 .akhil-rating {
     font-size: 18px; /* Increase font size for rating */
-    color: #aaa; /* Lighter color for ratings */
+    color: red; /* Lighter color for ratings */
+}
+.akhil-rating span{
+    color: #ccc;
 }
 
 .akhil-price {
@@ -88,17 +90,37 @@ h2 {
 .akhil-offers ul {
     padding-left: 25px; /* Increase padding for offer list */
 }
+.akhil-original-price {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 20px;
+}
 
-.akhil-offers li {
+.akhil-offers {
+    display: flex; /* Use flexbox to arrange child elements side by side */
+    justify-content: space-around; /* Add space between the two items */
+    flex-wrap: wrap; /* Ensure that they wrap to the next line if the container is too small */
+}
+.akhil-discount{
+    color: green;
+}
+h4{
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.akhil-offers p {
     font-size: 16px; /* Larger font size for offers */
-    margin-bottom: 10px; /* More space between offer items */
+    margin-bottom: 10px; /* Space between offer items */
+    margin-top: 20px;
     color: white; /* White text for offers */
+    border: 1px solid white;
+    display: inline-block; /* Ensures the items are treated as blocks but inline */
+    padding: 9px; 
+    width: 40%; /* Adjust the width of each box to take up half the container space (or tweak as needed) */
+    box-sizing: border-box; /* Ensures padding and borders are included in the width */
 }
 
-.akhil-emi p {
-    font-size: 18px; /* Larger font size for EMI info */
-    color: white; /* White color for EMI text */
-}
 
 .akhil-add-to-cart {
     background-color: #ff5722; /* Red button */
@@ -137,7 +159,7 @@ h2 {
 
 .akhil-tab-button:focus {
     outline: none;
-    background-color: #d0d0d0;
+    background-color: green;
 }
 /* ProductDetail.css */
 
@@ -147,28 +169,87 @@ h2 {
 }
 
 .review {
-    border-bottom: 1px solid #ccc;
+    /* border-bottom: 1px solid #ccc; */
     padding: 10px 0;
     margin-bottom: 10px;
 }
 
 .review h4 {
     font-size: 18px;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 }
+/* Container for profile icon and name/date/rating */
+.review-header {
+    display: flex; /* Align profile icon and details horizontally */
+    align-items: flex-start; /* Align items at the start (top) */
+}
+
+/* Profile icon styling */
+.review-user-icon {
+    font-size: 30px; /* Adjust icon size */
+    margin-right: 15px; /* Space between icon and name */
+}
+
+/* Review info container for name, date, and rating */
+.review-info {
+    flex-grow: 1; /* Allow review info to take up remaining space */
+    display: flex;
+    flex-direction: column; /* Stack name, date, and rating vertically */
+    justify-content: flex-start; /* Align items at the top */
+    margin-top: 9px;
+}
+
+/* Name styling */
+.review-info h4 {
+    margin: 0; /* Remove default margin */
+    font-size: 18px; /* Adjust font size */
+    font-weight: bold; /* Make name bold */
+}
+
+/* Meta container for date and rating */
+.review-meta {
+    font-size: 14px; /* Adjust font size for date and rating */
+    color: #555; /* Make the text color a bit lighter */
+}
+
+/* Date styling */
+.review-date {
+    margin: 0; /* Remove default margin */
+}
+
+/* Rating container styling */
+.review-rating {
+    margin-top: 5px; /* Space between date and rating */
+}
+
+/* Optional: Adjust spacing for stars or change star size */
+.review-rating i {
+    font-size: 16px; /* Adjust the star size */
+    color: #f39c12; /* Star color (you can adjust this) */
+}
+
+/* Styling for review text */
 
 .review-date {
     font-size: 14px;
     color: gray;
+    display: inline;
+}
+.review-date span{
+    color: white;
+    font-size: 24px;
+    margin: 10px;
 }
 
 .review-rating {
-    color: #ffcc00; /* Golden color for stars */
+    color: red; /* Golden color for stars */
+    display: inline;
 }
 
 .review-text {
     font-size: 16px;
     line-height: 1.6;
+    margin-top: 20px;
 }
 /* Related Products Section */
 .akhil-related-products {
@@ -176,14 +257,17 @@ h2 {
 }
 
 .akhil-related-products h3 {
-    font-size: 24px;
+    font-size: 40px;
     margin-bottom: 20px;
+    text-align: center;
+    color: red;
 }
 
 .akhil-related-products-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
 }
 
 .related-product {
@@ -192,7 +276,12 @@ h2 {
     width: 200px;
     text-align: center;
 }
-
+.related-product-rating{
+    color: red;
+}
+hr{
+    margin-top: 20px;
+}
 .related-product img {
     max-width: 100%;
     height: auto;
@@ -207,9 +296,12 @@ h2 {
     text-decoration: line-through;
     color: gray;
 }
+.related-product-price{
+    margin-top: 20px;
+}
 
 .add-to-cart-btn {
-    background-color: #ff5c5c;
+    background-color: red;
     color: white;
     padding: 8px 16px;
     border: none;
@@ -221,3 +313,18 @@ h2 {
 .add-to-cart-btn:hover {
     background-color: #ff4040;
 }
+.akhil-specifications li{
+    list-style-type: none;
+    margin: 20px;
+}
+.akhil-specifications, .akhil-tab-content {
+    margin-top: 20px;
+}
+.review-user-icon{
+    border: 1px solid grey;
+    font-size: 36px;
+    padding: 20px;
+    border-radius: 50%;
+    background-color: grey;
+}
+
