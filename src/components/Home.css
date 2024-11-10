@@ -30,17 +30,18 @@ body {
 }
 
 .banner-caption {
-    font-size: 58px;
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
     color:#E6E1DF; /* Keep the caption red */
 }
 
 .banner-description {
-    font-size: 26px;
+    font-size: 50px;
     line-height: 1.5;
     margin-bottom: 10px;
     color: #E6E1DF; /* Set description color */
+    width: 80%;
 }
 
 .product-price {
@@ -183,7 +184,6 @@ body {
 .product-price {
     display: flex; /* Flexbox for inline layout of prices */
     align-items: center; /* Center prices vertically */
-    justify-content: center;
     margin-top: 10px; /* Space above prices */
     color: #E6E1DF; /* Set product price color */
 }
@@ -208,4 +208,10 @@ body {
     font-size: 36px; /* Size of the section title */
     margin-bottom: 20px; /* Space below the title */
     color:#E6E1DF; /* Keep the section title red */
+}
+.featured{
+    text-align: center;
+    font-size: 37px;
+    margin-top: 100px;
+    margin-bottom:30px;
 }

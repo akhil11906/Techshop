@@ -131,7 +131,7 @@ const ProductDetail = () => {
                             </div>
 
                             {/* Product Title */}
-                            <h4>{relatedProduct.title}</h4>
+                            <h4 className='title'>{relatedProduct.title}</h4>
 
                             {/* Product Subtitle (Tagline or Short Description) */}
                             <p className="related-product-subtitle">{relatedProduct.info}</p>

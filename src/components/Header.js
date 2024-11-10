@@ -1,21 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaSearch, FaShoppingCart, FaUser, FaTimes } from 'react-icons/fa'; // Importing FaTimes for close icon
+import { FaSearch, FaShoppingCart, FaUser, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useCart } from '../components/CartContext';
+import productsData from '../Data/ProductsData'; // Ensure this path is correct
 
 const Header = () => {
     const [showSearch, setShowSearch] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
     const [showLogin, setShowLogin] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
     const [showUserOptions, setShowUserOptions] = useState(false);
-    const overlayRef = useRef(null);
-    const userOptionsRef = useRef(null); // Ref for user options
 
     const { getTotalItems } = useCart();
+    const searchRef = useRef();
+    const searchInputRef = useRef();
 
-    const toggleSearch = () => setShowSearch(!showSearch);
+    // Toggle search overlay visibility
+    const toggleSearch = () => setShowSearch(prev => !prev);
 
+    // Toggle user options (login/register)
     const toggleUserOptions = () => {
         setShowUserOptions(prev => !prev);
         setShowLogin(false);
@@ -33,64 +37,106 @@ const Header = () => {
         setShowLogin(false);
     };
 
+    // Handle closing overlays when clicking outside
     const handleCloseOverlays = () => {
         setShowLogin(false);
         setShowRegister(false);
-        setShowUserOptions(false); // Ensure user options are closed as well
+        setShowUserOptions(false);
+        setShowSearch(false);
+        setSearchResults([]);
     };
 
-    const handleClickOutside = (event) => {
-        // Check if the click is outside both the overlay and user options
-        if (
-            overlayRef.current && !overlayRef.current.contains(event.target) &&
-            userOptionsRef.current && !userOptionsRef.current.contains(event.target)
-        ) {
-            setShowSearch(false);
-            setShowLogin(false);
-            setShowRegister(false);
-            setShowUserOptions(false);
+    const handleOverlayClick = (event) => {
+        if (event.target === event.currentTarget) {
+            handleCloseOverlays();
         }
     };
 
-    useEffect(() => {
-        if (showSearch || showLogin || showRegister || showUserOptions) {
-            document.addEventListener('mousedown', handleClickOutside);
+    // Update search suggestions based on input
+    const handleSearchChange = (event) => {
+        const query = event.target.value;
+        setSearchQuery(query);
+
+        if (query) {
+            const filteredResults = productsData.filter(product =>
+                product.title.toLowerCase().includes(query.toLowerCase())
+            );
+            setSearchResults(filteredResults.slice(0, 5)); // Limit to top 5 suggestions
         } else {
-            document.removeEventListener('mousedown', handleClickOutside);
+            setSearchResults([]); // Clear suggestions if input is empty
         }
+    };
+
+    // Handle search form submission
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (searchQuery) {
+            alert(`Searching for: ${searchQuery}`);
+            // Navigate to search results page (optional)
+        }
+        setShowSearch(false);
+        setSearchResults([]);
+    };
+
+    // Close search suggestions on click outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (searchRef.current && !searchRef.current.contains(event.target)) {
+                setSearchResults([]);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [showSearch, showLogin, showRegister, showUserOptions]);
-
-    const handleSearchSubmit = (e) => {
-        e.preventDefault();
-        alert(`Searching for: ${searchQuery}`);
-        setShowSearch(false);
-    };
+    }, []);
 
     return (
         <>
             {/* Search Overlay */}
             {showSearch && (
-                <div style={overlayStyle}>
-                    <form onSubmit={handleSearchSubmit} style={overlayFormStyle} ref={overlayRef}>
-                        <input 
-                            type="text" 
-                            placeholder="Search..." 
-                            value={searchQuery} 
-                            onChange={(e) => setSearchQuery(e.target.value)} 
-                            style={overlayInputStyle}
-                        />
-                        <button type="submit" style={overlayButtonStyle}>Search</button>
-                    </form>
+                <div style={overlayStyle} onClick={handleOverlayClick}>
+                    <div ref={searchRef} style={searchOverlayContentStyle}>
+                        <form 
+                            onSubmit={handleSearchSubmit} 
+                            style={overlayFormStyle}
+                            onClick={(e) => e.stopPropagation()} // Prevent click from closing overlay
+                        >
+                            <input 
+                                type="text" 
+                                placeholder="Search..." 
+                                value={searchQuery} 
+                                onChange={handleSearchChange} 
+                                style={overlayInputStyle}
+                                ref={searchInputRef} 
+                            />
+                        </form>
+
+                        {/* Search Suggestions */}
+                        {searchResults.length > 0 && (
+                            <div style={suggestionsDropdownStyle}>
+                                {searchResults.map((product) => (
+                                    <Link
+                                        to={`/product/${product.id}`} // Link to the product details page
+                                        key={product.id}
+                                        style={suggestionItemStyle}
+                                    >
+                                        {product.title}
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
             )}
 
             {/* Login or Register Overlay */}
             {(showLogin || showRegister) && (
-                <div style={overlayStyle}>
-                    <div style={overlayFormStyle} ref={overlayRef}>
+                <div style={overlayStyle} onClick={handleOverlayClick}>
+                    <div 
+                        style={overlayFormStyle} 
+                        onClick={(e) => e.stopPropagation()} // Prevent click from closing overlay
+                    >
                         <FaTimes style={closeIconStyle} onClick={handleCloseOverlays} />
                         <h2 style={{ color: '#E1DDD' }}>{showLogin ? 'Login' : 'Register'}</h2>
                         {showLogin ? (
@@ -138,7 +184,7 @@ const Header = () => {
                             <div style={userIconContainerStyle}>
                                 <FaUser style={iconStyle} onClick={toggleUserOptions} />
                                 {showUserOptions && (
-                                    <div style={userOptionsContainerStyle} ref={userOptionsRef}>
+                                    <div style={userOptionsContainerStyle}>
                                         <button onClick={toggleLogin} style={buttonBelowIconStyle}>Login</button>
                                         <button onClick={toggleRegister} style={buttonBelowIconStyle}>Register</button>
                                     </div>
@@ -152,8 +198,8 @@ const Header = () => {
     );
 };
 
+// Define missing styles
 
-// Styles (same as before)
 const overlayStyle = {
     position: 'fixed',
     top: 0,
@@ -161,22 +207,31 @@ const overlayStyle = {
     width: '100%',
     height: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
     zIndex: 1000,
+};
+
+const searchOverlayContentStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '20px',
+    borderRadius: '5px',
+    color: '#E1DDD',
+    width: '100%',
+    maxWidth: '500px',
+    position: 'relative',
+    margin: '10px auto',
 };
 
 const overlayFormStyle = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: '#333',
     padding: '20px',
     borderRadius: '5px',
     color: '#E1DDD',
-    width: '300px',
-    position: 'relative', // Allows positioning of close icon
+    width: '100%',
+    position: 'relative',
 };
 
 const overlayInputStyle = {
@@ -189,6 +244,7 @@ const overlayInputStyle = {
     outline: 'none',
     marginBottom: '10px',
     width: '100%',
+    color: 'white',
 };
 
 const overlayButtonStyle = {
@@ -199,11 +255,31 @@ const overlayButtonStyle = {
     color: '#fff',
     borderRadius: '5px',
     cursor: 'pointer',
-    marginTop: '10px',
     width: '100%',
 };
 
-// Badge Style
+const suggestionsDropdownStyle = {
+    position: 'absolute',
+    top: '90%',
+    left: 0,
+    width: '100%',
+    border: '1px solid white',
+    backgroundColor: '#333',
+    color: '#E1DDD',
+    maxHeight: '200px',
+    overflowY: 'auto',
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)',
+};
+
+const suggestionItemStyle = {
+    padding: '10px',
+    cursor: 'pointer',
+    borderBottom: '1px solid #555',
+    display: 'block',
+    textDecoration: 'none',
+    color: 'white',
+};
+
 const badgeStyle = {
     position: 'absolute',
     top: '-18px',
@@ -215,7 +291,6 @@ const badgeStyle = {
     fontSize: '12px',
 };
 
-// Header Styles
 const headerStyle = {
     display: 'flex',
     justifyContent: 'space-between',
@@ -230,61 +305,24 @@ const headerStyle = {
 const logoStyle = {
     flex: '1',
     color: '#E1DDD',
-    fontSize: '20px',
-    fontWeight: 'bold',
+    fontSize: '24px',
 };
 
 const navStyle = {
-    flex: '1',
     display: 'flex',
-    justifyContent: 'flex-end',
+    alignItems: 'center',
 };
 
 const navListStyle = {
     listStyleType: 'none',
     display: 'flex',
-    padding: 0,
     margin: 0,
+    padding: 0,
 };
 
 const navItemStyle = {
-    marginLeft: '20px',
+    margin: '0 10px',
     cursor: 'pointer',
-    color: '#E1DDD',
-    transition: 'color 0.3s',
-    position: 'relative',
-};
-
-// New styles for user icon and buttons
-const userIconContainerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-};
-
-const userOptionsContainerStyle = {
-    position: 'absolute',
-    top: '30px',
-    right: '0',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: '#333',
-    padding: '10px',
-    borderRadius: '5px',
-    zIndex: 1000,
-};
-
-const buttonBelowIconStyle = {
-    padding: '5px 10px',
-    fontSize: '14px',
-    border: 'none',
-    backgroundColor: 'red',
-    color: '#fff',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    marginTop: '5px',
-    width: '100%',
 };
 
 const iconStyle = {
@@ -292,12 +330,35 @@ const iconStyle = {
     fontSize: '20px',
 };
 
-const closeIconStyle = {
+const userIconContainerStyle = {
+    position: 'relative',
+};
+
+const userOptionsContainerStyle = {
     position: 'absolute',
+    top: '100%',
+    left: '0',
+    backgroundColor: '#333',
+    borderRadius: '5px',
+    width: '150px',
+    zIndex: 1000,
+};
+
+const buttonBelowIconStyle = {
+    background: 'none',
+    color: '#E1DDD',
+    border: 'none',
+    padding: '10px',
+    width: '100%',
+    textAlign: 'left',
+    cursor: 'pointer',
+};
+
+const closeIconStyle = {
     top: '10px',
     right: '10px',
-    color: 'white',
-    fontSize: '24px',
+    fontSize: '20px',
+    color: '#E1DDD',
     cursor: 'pointer',
 };
 

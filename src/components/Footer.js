@@ -16,17 +16,17 @@ const Footer = () => {
                 <Feature
                     icon={<FaShieldAlt />}
                     title="Brand Warranty"
-                    description="Quality assured"
+                    description="100% Original products"
                 />
                 <Feature
                     icon={<FaGift />}
                     title="Exciting Deals"
-                    description="On select items"
+                    description="On all prepaid orders"
                 />
                 <Feature
                     icon={<FaLock />}
                     title="Secure Payments"
-                    description="100% safe"
+                    description="SSL/Secure certificate"
                 />
             </div>
             <div style={columnsContainerStyle}>
@@ -63,6 +63,7 @@ const Footer = () => {
                         <li>Contact Us</li>
                         <li>Service Centers</li>
                         <li>Careers</li>
+                        <li>Affiliates</li>
                     </ul>
                 </div>
             </div>

@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import ProductList from './ProductList'; 
 import './Home.css';
 import { useCart } from '../components/CartContext'; // Adjust import path as necessary
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
     const { addToCart } = useCart(); // Use the Cart context
     const [currentIndex, setCurrentIndex] = useState(0);
+    const navigate = useNavigate(); 
     // eslint-disable-next-line
     const [selectedCategory, setSelectedCategory] = useState('All'); // Ignore unused warning for now
 
@@ -13,18 +15,23 @@ const Home = () => {
     const banners = [
         { 
             id: 1, 
-            src: require('../Assets/boat110-1.png'), 
-            alt: 'Exclusive Deals', 
-            caption: "Exclusive Deals on Audio Gear", 
-            description: "Shop the best deals on high-quality audio equipment for every music lover."
+            src: require('../Assets/jbl760nc-1.png'), 
+            alt: 'JBL Live 660NC', 
+            caption: "JBL Live 660NC",
+            description: "Wireless Over-Ear NC Headphones",
+            price: "₹9999",
+            originalPrice: "₹14999",
+            isProduct: true 
         },
         { 
-            id: 2, 
-            src: require('../Assets/boat131-2.png'), 
-            alt: 'Top-Rated Products', 
-            caption: "Top-Rated Products for You", 
-            description: "Explore our curated selection of top-rated products.", 
-            isDark: true 
+            id: 7, 
+            src: require('../Assets/sonyXb910n-1.png'), 
+            alt: 'Sony WH-XB910N', 
+            caption: "Sony WH-XB910N",
+            description: "Extra Bass Noise Cancelling Headphones",
+            price: "₹14999",
+            originalPrice: "₹19999",
+            isProduct: true 
         },
         { 
             id: 3, 
@@ -37,14 +44,16 @@ const Home = () => {
             isProduct: true 
         }
     ];
-
+    const handleShopNowClick = (id) => {
+        navigate(`/product/${id}`);
+    };
     // Product data
     const products = [
-        { id: 1, src: require('../Assets/boat518-1.png'), name: "Boat Airdopes 110", price: "₹1999", originalPrice: "₹2990" },
-        { id: 2, src: require('../Assets/boat410-2.png'), name: "Boat Airdopes 131", price: "₹1299", originalPrice: "₹2490" },
-        { id: 3, src: require('../Assets/jbl660nc-2.png'), name: "JBL 660 NC", price: "₹2999", originalPrice: "₹3990" },
-        { id: 4, src: require('../Assets/boat131-4.png'), name: "Boat Airdopes Pro", price: "₹2999", originalPrice: "₹3990" },
-        { id: 5, src: require('../Assets/boat110-2.png'), name: "Boat Airdopes 100", price: "₹999", originalPrice: "₹1490" }
+        { id: 2, src: require('../Assets/boat518-1.png'), name: "boAt Rockerz 518", price: "₹1299", originalPrice: "₹3990" },
+        { id: 5, src: require('../Assets/boat410-2.png'), name: "boAt Rockerz 410", price: "₹1399", originalPrice: "₹2999" },
+        { id: 19, src: require('../Assets/sonyXb400-1.png'), name: "Sony WI-XB400", price: "₹2990", originalPrice: "₹4990" },
+        { id: 9, src: require('../Assets/jbl760nc-1.png'), name: "JBL Live 760NC", price: "₹13999", originalPrice: "₹19999" },
+        { id: 17, src: require('../Assets/boat110-2.png'), name: "boAt Rockerz 381", price: "₹2999", originalPrice: "₹4990" }
     ];
 
     // Handle banner sliding
@@ -78,7 +87,11 @@ const Home = () => {
                                 <span className="discounted-price">{banners[currentIndex].price}</span>
                                 <span className="original-price">{banners[currentIndex].originalPrice}</span>
                             </div>
-                            <button className="shop-now-btn">Shop Now</button>
+                            <button 
+                            className="shop-now-btn" 
+                            onClick={() => handleShopNowClick(banners[currentIndex].id)}>
+                            Shop Now
+                        </button>
                         </div>
                     ) : (
                         <div className="banner-content">
@@ -89,13 +102,17 @@ const Home = () => {
                     <img src={banners[currentIndex].src} alt={banners[currentIndex].alt} className="banner-image" />
                 </div>
             </div>
-
+                    <h3 className='featured'>Featured Products</h3>
             <div className="image-slider">
                 <div className="image-row">
                     {displayedProducts.map((product, index) => {
                         let sizeClass = (index === 0 || index === 4) ? 'size-60' : (index === 1 || index === 3) ? 'size-80' : 'size-100';
                         return (
-                            <div className={`image-item ${sizeClass}`} key={product.id}>
+                            <div 
+                                className={`image-item ${sizeClass}`} 
+                                key={product.id}
+                                onClick={() => navigate(`/product/${product.id}`)} // Navigate to product details
+                            >
                                 <div className="product-name">{product.name}</div>
                                 <img src={product.src} alt={product.name} className="image" />
                                 <div className="product-price">

@@ -59,7 +59,7 @@ body {
 
 .ratings {
     margin-top: 8px; /* Space above ratings */
-    color: #E6E1DF; /* Use the new text color for ratings */
+    color: red; /* Use the new text color for ratings */
 }
 
 .view-details-button {

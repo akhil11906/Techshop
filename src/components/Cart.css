@@ -170,4 +170,33 @@ body {
     margin-left: 10px; /* Space between the discounted price and the original price */
     font-size: 0.9rem; /* Slightly smaller font for the original price */
 }
+.empty-cart-message-container {
+    text-align: center;
+    padding: 50px;
+}
 
+.empty-cart-message {
+    font-size: 24px;
+    color:white;
+    margin-top: 20px; /* Add some space between the icon and the message */
+}
+
+.cart-icon {
+    margin-bottom: 20px; /* Space between the cart icon and message */
+}
+
+.start-shopping-button {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    /* border-radius: 5px; */
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 20px; /* Space between the message and button */
+}
+
+.start-shopping-button:hover {
+    background-color: #218838;
+}

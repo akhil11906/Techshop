@@ -29,7 +29,7 @@ const AllProducts = () => {
             case 'latest':
                 return [...products].sort((a, b) => new Date(b.date) - new Date(a.date));
             case 'featured':
-                return [...products].filter(product => product.isFeatured);
+                return [...products].filter(product => product.tag);
             case 'top-rated':
                 return [...products].sort((a, b) => b.ratings - a.ratings);
             case 'price-asc':
@@ -78,8 +78,8 @@ const AllProducts = () => {
 
     return (
         <div style={containerStyle}>
-            <div style={sidebarStyle}>
-                <h3 style={headingStyle}>Sort By</h3>
+            <div style={sidebarStyle} className="sidebar-scrollable">
+                <h3>Sort By</h3>
                 <div style={optionsStyle}>
                     <button className="sort-button" onClick={() => setSortBy('latest')}>Latest</button>
                     <button className="sort-button" onClick={() => setSortBy('featured')}>Featured</button>
@@ -153,9 +153,13 @@ const containerStyle = {
 
 const sidebarStyle = {
     width: '200px', // Fixed width for the sidebar
+    height: '300px', // Set fixed height for the sidebar
     padding: '20px',
     backgroundColor: 'black',
     borderRight: '1px solid #ddd',
+    overflowY: 'auto', // Enables vertical scrolling when content overflows
+    position:'relative',
+    top:'70px'
 };
 
 const productGridStyle = {

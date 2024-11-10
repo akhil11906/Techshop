@@ -34,7 +34,7 @@ const ProductList = ({ selectedCategory }) => {
 
                 {/* Link to the All Products page */}
                 <Link to="/all-products" className="product-card browse-all-card">
-                    <h4>Browse all products</h4>
+                    <h4 className='browse'>Browse all products</h4>
                     <button className="view-details-button">View Products</button>
                 </Link>
             </div>
