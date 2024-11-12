@@ -5,7 +5,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import productsData from '../Data/ProductsData';
 import reviewsData from '../Data/ReviewData';
 import { useCart } from '../components/CartContext';
-import './ProductDetail.css';
+import '../Styles/ProductDetail.css';
 
 const ProductDetail = () => {
     const { id } = useParams();

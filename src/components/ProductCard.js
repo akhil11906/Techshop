@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa'; // Import star icons
-import './ProductCard.css';
+import '../Styles/ProductCard.css';
 
 const ProductCard = ({ product, addToCart }) => {
     // Function to render stars based on the rating

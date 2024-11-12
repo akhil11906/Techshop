@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import productsData from '../Data/ProductsData';
 import ProductCard from './ProductCard';
-import './ProductList.css';
+import '../Styles/ProductList.css';
 import { useCart } from '../components/CartContext'; // Import useCart
 
 const ProductList = ({ selectedCategory }) => {

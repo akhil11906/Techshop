@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import productsData from '../Data/ProductsData';
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../components/CartContext';
-import './AllProducts.css'; // Import your styles
+import '../Styles/AllProducts.css'; // Import your styles
 
 const AllProducts = () => {
     const { addToCart } = useCart();

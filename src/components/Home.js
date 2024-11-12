@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProductList from './ProductList'; 
-import './Home.css';
+import '../Styles/Home.css';
 import { useCart } from '../components/CartContext'; // Adjust import path as necessary
 import { useNavigate } from 'react-router-dom';
 
