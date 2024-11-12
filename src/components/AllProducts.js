@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import productsData from '../Data/ProductsData';
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../components/CartContext';
-import '../Styles/AllProducts.css'; // Import your styles
+import '../Styles/AllProducts.css';
 
 const AllProducts = () => {
     const { addToCart } = useCart();
@@ -10,7 +10,7 @@ const AllProducts = () => {
     const [selectedBrands, setSelectedBrands] = useState({
         JBL: false,
         Sony: false,
-        boAt: false, // Correct spelling for boAt
+        boAt: false,
     });
     const [selectedCategories, setSelectedCategories] = useState({
         Headphones: false,
@@ -18,11 +18,9 @@ const AllProducts = () => {
         Earphones: false,
         Neckbands: false,
     });
-
-    // State for selected price
-    const [priceLimit, setPriceLimit] = useState(29999); // Start at the maximum price
-    const minPrice = 900; // Minimum price
-    const maxPrice = 29999; // Maximum price
+    const [priceLimit, setPriceLimit] = useState(29999);
+    const minPrice = 900;
+    const maxPrice = 29999;
 
     const sortProducts = (products) => {
         switch (sortBy) {
@@ -41,7 +39,6 @@ const AllProducts = () => {
         }
     };
 
-    // Filter products by selected brands, categories, and price
     const filterProductsByBrandCategoryAndPrice = (products) => {
         const selectedBrandKeys = Object.keys(selectedBrands).filter(brand => selectedBrands[brand]);
         const selectedCategoryKeys = Object.keys(selectedCategories).filter(category => selectedCategories[category]);
@@ -49,7 +46,7 @@ const AllProducts = () => {
         return products.filter(product => {
             const brandMatch = selectedBrandKeys.length > 0 ? selectedBrandKeys.includes(product.brand) : true;
             const categoryMatch = selectedCategoryKeys.length > 0 ? selectedCategoryKeys.includes(product.category) : true;
-            const priceMatch = product.finalPrice <= priceLimit; // Match products with price less than or equal to priceLimit
+            const priceMatch = product.finalPrice <= priceLimit;
             return brandMatch && categoryMatch && priceMatch;
         });
     };
@@ -60,20 +57,19 @@ const AllProducts = () => {
     const handleBrandChange = (brand) => {
         setSelectedBrands((prevState) => ({
             ...prevState,
-            [brand]: !prevState[brand], // Toggle brand selection
+            [brand]: !prevState[brand],
         }));
     };
 
     const handleCategoryChange = (category) => {
         setSelectedCategories((prevState) => ({
             ...prevState,
-            [category]: !prevState[category], // Toggle category selection
+            [category]: !prevState[category],
         }));
     };
 
-    // Handle price range change
     const handlePriceChange = (e) => {
-        setPriceLimit(Number(e.target.value)); // Update price limit based on slider value
+        setPriceLimit(Number(e.target.value));
     };
 
     return (
@@ -119,7 +115,6 @@ const AllProducts = () => {
                     ))}
                 </div>
 
-                {/* Price Filter Section */}
                 <h3 style={headingStyle}>Price</h3>
                 <div style={priceRangeStyle}>
                     <h4>Max Price: ${priceLimit}</h4>
@@ -146,35 +141,34 @@ const AllProducts = () => {
     );
 };
 
-// Example styles for layout
 const containerStyle = {
     display: 'flex',
 };
 
 const sidebarStyle = {
-    width: '200px', // Fixed width for the sidebar
-    height: '300px', // Set fixed height for the sidebar
+    width: '200px',
+    height: '300px',
     padding: '20px',
     backgroundColor: 'black',
     borderRight: '1px solid #ddd',
-    overflowY: 'auto', // Enables vertical scrolling when content overflows
-    position:'relative',
-    top:'70px'
+    overflowY: 'auto',
+    position: 'relative',
+    top: '70px'
 };
 
 const productGridStyle = {
-    flex: 1, // Take the remaining space
+    flex: 1,
     padding: '20px',
 };
 
 const headingStyle = {
-  marginTop:'50px'
+  marginTop: '50px'
 };
 
 const optionsStyle = {
     display: 'flex',
-    flexDirection: 'column', // Stack options vertically
-    backgroundColor:'black'
+    flexDirection: 'column',
+    backgroundColor: 'black'
 };
 
 const priceRangeStyle = {

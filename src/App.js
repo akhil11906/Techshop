@@ -8,6 +8,7 @@ import './App.css';
 import AllProducts from './components/AllProducts';
 import ProductDetail from './components/ProductDetail';  // Import the ProductDetail component
 
+
 const App = () => {
     return (
         <Router>
