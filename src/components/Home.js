@@ -53,7 +53,7 @@ const Home = () => {
         { id: 5, src: require('../Assets/boat410-2.png'), name: "boAt Rockerz 410", price: "₹1399", originalPrice: "₹2999" },
         { id: 19, src: require('../Assets/sonyXb400-1.png'), name: "Sony WI-XB400", price: "₹2990", originalPrice: "₹4990" },
         { id: 9, src: require('../Assets/jbl760nc-1.png'), name: "JBL Live 760NC", price: "₹13999", originalPrice: "₹19999" },
-        { id: 17, src: require('../Assets/boat110-2.png'), name: "boAt Rockerz 381", price: "₹2999", originalPrice: "₹4990" }
+        { id: 17, src: require('../Assets/boat381-2.png'), name: "boAt Rockerz 381", price: "₹2999", originalPrice: "₹4990" }
     ];
 
     // Handle banner sliding
